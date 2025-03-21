@@ -1,0 +1,13 @@
+name: Hello World
+on: 
+  push:
+    branches:
+      - main
+jobs:
+  Hello-World-Job:
+    runs-on:
+      - codebuild-myProject-${{ github.run_id }}-${{ github.run_attempt }}
+      - fleet:myFleet
+      - image:arm-3.0
+    steps:
+      - run: echo "Hello World!"
