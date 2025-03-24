@@ -2,7 +2,10 @@ name: Publish repo
 
 on:
   pull_request:
-    types: [closed]
+    types: 
+      - closed
+    branches:
+      - 'main'
     inputs:
       repo:
         description: name of the publishing ecr repo
