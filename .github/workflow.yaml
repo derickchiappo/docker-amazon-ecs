@@ -1,0 +1,19 @@
+name: Publish repo
+
+on:
+  pull_request:
+    types: [closed]
+    inputs:
+      repo:
+        description: name of the publishing ecr repo
+        required: true
+      environment:
+        type: environment
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Send greeting
+      run: echo ${{ github.event.inputs.repo }}"
