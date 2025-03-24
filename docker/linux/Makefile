@@ -14,7 +14,7 @@ MODULE :=  $(MODULE)
 
 ## AWS
 AWS_REGION ?= eu-west-2
-AWS_ACCOINT := $(AWS_ACCOUNT)
+AWS_ACCOUNT := $(AWS_ACCOUNT)
 IMAGE_DOMAIN ?= $(AWS_ACCOUNT).dkr.ecr.eu-west-2.amazonaws.com
 IMAGE_REPO ?= $(IMAGE_DOMAIN)/docker-test-2
 
