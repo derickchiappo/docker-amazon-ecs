@@ -24,7 +24,8 @@ help: # generates a list of all targets with their descriptions
 	@grep ":" ./Makefile | awk "/#/ && !/grep/" | sed -E 's/(.+:).*#(.+)/\x1b[36m\1\x1b[0m\2/g'
 
 build:  # build image that requires lock files
-	docker buildx build  --platform linux/amd64 -t $(IMAGE_REPO):$(IMAGE_TAG) -f Dockerfile.$(MODULE_NAME) --target prod .
+	echo $(MODULE_NAME)
+	docker buildx build  --platform linux/amd64 -t $(IMAGE_REPO):$(IMAGE_TAG) -f Dockerfile --target prod .
 
 publish: build #_ecr__login # publish docker images with lock files
 	docker push $(IMAGE_REPO):$(IMAGE_TAG)
