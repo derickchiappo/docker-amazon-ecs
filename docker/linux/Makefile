@@ -9,12 +9,12 @@ MAKEFLAGS += --no-builtin-rules
 
 .PHONY: help clean build publish
 
-MODULE :=  $(MODULE)
+export MODULE_NAME :=  $(MODULE)
 
 
 ## AWS
 AWS_REGION ?= eu-west-2
-AWS_ACCOUNT := $(AWS_ACCOUNT)
+export AWS_ACCOUNT := $(AWS_ACCOUNT)
 IMAGE_DOMAIN ?= $(AWS_ACCOUNT).dkr.ecr.eu-west-2.amazonaws.com
 IMAGE_REPO ?= $(IMAGE_DOMAIN)/docker-test-2
 
