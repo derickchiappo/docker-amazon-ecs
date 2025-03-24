@@ -7,7 +7,7 @@ SHELL=bash
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
-.PHONY: help clean build__gambi _ecr__login
+.PHONY: help clean build publish
 
 MODULE :=  $(MODULE)
 
