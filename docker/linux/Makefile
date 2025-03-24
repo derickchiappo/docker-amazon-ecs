@@ -25,7 +25,7 @@ help: # generates a list of all targets with their descriptions
 
 build:  # build image that requires lock files
 	echo $(MODULE_NAME) # echo module name
-	docker buildx build  --platform linux/amd64 -t $(IMAGE_REPO):$(IMAGE_TAG) -f Dockerfile --target prod .
+	docker buildx build  --platform linux/amd64 -t $(IMAGE_REPO):$(IMAGE_TAG) -f Dockerfile
 
 publish: build #_ecr__login # publish docker images with lock files
 	docker push $(IMAGE_REPO):$(IMAGE_TAG)
