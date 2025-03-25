@@ -1,22 +1,28 @@
-name: Publish repo
-
+name: automated publishing to docker
 on:
   pull_request:
-    types: 
-      - opened
     branches:
       - main
-    inputs:
-      repo:
-        description: name of the publishing ecr repo
-        required: true
-      environment:
-        type: environment
+    types:
+      - synchronize
+      - opened
+      - reopened
+      - ready_for_review
 
 jobs:
-  greet:
+  changedfiles:
     runs-on: ubuntu-latest
-
+    # Map a step output to a job output
+    outputs:
+      all: ${{ steps.changes.outputs.all}}
+      ts: ${{ steps.changes.outputs.ts }}
     steps:
-    - name: Send greeting
-      run: echo ${{ github.event.inputs.repo }}"
+        # Make sure we have some code to diff.
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Get changed files
+        id: changes
+        # Set outputs using the command.
+        run: |
+          echo "::set-output name=all::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)"
+          echo "::set-output name=ts::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .ts$ | xargs)"
