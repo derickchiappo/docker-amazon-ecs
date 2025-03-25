@@ -1,23 +1,14 @@
-name: automated publishing to docker
+name: Hello World
 
 on:
-  pull_request:
+  push:
     # Sequence of patterns matched against refs/heads
     branches:
       - main
-    types:
-      - synchronize
-      - opened
-      - reopened
-      - ready_for_review
-    inputs:
-      ecr_repo:
-        description: amazon ECR repo of choice
-        required: true
 
 jobs:
-  greet:
-    runs-on: ubuntu-latest
+  Hello-World-Job:
+    runs-on:
+      - codebuild--${{ github.run_id }}-${{ github.run_attempt }}
     steps:
-      - name: Send greeting
-        run: echo "${{ github.event.inputs.ecr_repo }}"
+      - run: echo "Hello World"
