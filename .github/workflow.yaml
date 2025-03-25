@@ -3,7 +3,7 @@ name: Publish repo
 on:
   pull_request:
     types: 
-      - closed
+      - opened
     branches:
       - 'main'
     inputs:
