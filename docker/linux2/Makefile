@@ -10,7 +10,8 @@ MAKEFLAGS += --no-builtin-rules
 .PHONY: help clean build publish eeu
 
 export MODULE_NAME :=  $(MODULE_NAME)
-
+export AWS_ACCESS_KEY_ID := $(AWS_ACCESS_KEY_ID)
+export AWS_SECRET_ACCESS_KEY := $(AWS_SECRET_ACCESS_KEY)
 
 ## AWS
 AWS_REGION ?= eu-west-2
@@ -23,10 +24,13 @@ IMAGE_TAG := $(MODULE_NAME)
 help: # generates a list of all targets with their descriptions
 	@grep ":" ./Makefile | awk "/#/ && !/grep/" | sed -E 's/(.+:).*#(.+)/\x1b[36m\1\x1b[0m\2/g'
 
+_ecr__login:
+	aws ecr get-login-password --region $(AWS_REGION) | docker login --username AWS --password-stdin $(IMAGE_DOMAIN)
+
 build:  # build image that requires lock files
 	docker buildx build --platform linux/amd64 -t $(IMAGE_REPO):$(IMAGE_TAG) -f DockerFile .
 
-publish: build #_ecr__login # publish docker images with lock files
+publish: build _ecr__login # publish docker images with lock files
 	docker push $(IMAGE_REPO):$(IMAGE_TAG)
 
 clean: # deletes all local intermediate files or cache
