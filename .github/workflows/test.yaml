@@ -24,4 +24,4 @@ jobs:
         id: changes
         # Set outputs using the command.
         run: |
-          git diff HEAD HEAD~ --name-only docker/
+          git diff HEAD HEAD~ --name-only -- docker/
