@@ -7,7 +7,7 @@ SHELL=bash
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
-.PHONY: help clean build publish run
+.PHONY: help clean build publish
 
 export MODULE_NAME :=  $(MODULE_NAME)
 
