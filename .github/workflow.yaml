@@ -5,7 +5,7 @@ on:
     types: 
       - opened
     branches:
-      - 'main'
+      - main
     inputs:
       repo:
         description: name of the publishing ecr repo
