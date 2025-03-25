@@ -7,8 +7,6 @@ on:
       ecr_repo:
         description: amazon ECR repo of choice
         required: true
-      environment:
-        type: environment
 
 jobs:
     steps:
