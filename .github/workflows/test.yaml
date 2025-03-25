@@ -2,7 +2,16 @@ name: automated publishing to docker
 name: Mixed inputs
 
 on:
-  workflow_dispatch:
+on:
+  pull_request:
+    # Sequence of patterns matched against refs/heads
+    branches:
+      - main
+    types:
+      - synchronize
+      - opened
+      - reopened
+      - ready_for_review
     inputs:
       ecr_repo:
         description: amazon ECR repo of choice
