@@ -2,7 +2,6 @@ name: automated publishing to docker
 name: Mixed inputs
 
 on:
-on:
   pull_request:
     # Sequence of patterns matched against refs/heads
     branches:
