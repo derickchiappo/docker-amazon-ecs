@@ -1,5 +1,4 @@
 name: automated publishing to docker
-name: Mixed inputs
 
 on:
   pull_request:
