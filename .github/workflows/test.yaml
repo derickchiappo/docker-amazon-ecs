@@ -1,27 +1,16 @@
 name: automated publishing to docker
+name: Mixed inputs
+
 on:
-  pull_request:
-    branches:
-      - main
-    types:
-      - synchronize
-      - opened
-      - reopened
-      - ready_for_review
+  workflow_dispatch:
+    inputs:
+      ecr_repo:
+        description: amazon ECR repo of choice
+        required: true
+      environment:
+        type: environment
 
 jobs:
-  changedfiles:
-    runs-on: ubuntu-latest
-    # Map a step output to a job output
-    outputs:
-      all: ${{ steps.changes.outputs.all}}
-      ts: ${{ steps.changes.outputs.ts }}
     steps:
-        # Make sure we have some code to diff.
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Get changed files
-        id: changes
-        # Set outputs using the command.
-        run: |
-          git diff HEAD HEAD~ --name-only -- docker/
+    - name: Send greeting
+      run: echo "${{ github.event.inputs.ecr_repo }}"
