@@ -16,6 +16,8 @@ on:
         required: true
 
 jobs:
+  greet:
+    runs-on: ubuntu-latest
     steps:
-    - name: Send greeting
-      run: echo "${{ github.event.inputs.ecr_repo }}"
+      - name: Send greeting
+        run: echo "${{ github.event.inputs.ecr_repo }}"
